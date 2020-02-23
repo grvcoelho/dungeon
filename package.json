@@ -1,0 +1,25 @@
+{
+  "name": "dungeon",
+  "version": "1.0.0",
+  "description": ":dragon: An attempt at a dungeon rogue-like deck game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grvcoelho/dungeon.git"
+  },
+  "keywords": [
+    "dungeon",
+    "deck",
+    "game",
+    "rogue"
+  ],
+  "author": "Guilherme Coelho <@grvcoelho>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grvcoelho/dungeon/issues"
+  },
+  "homepage": "https://github.com/grvcoelho/dungeon#readme"
+}

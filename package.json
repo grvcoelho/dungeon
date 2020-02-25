@@ -4,7 +4,9 @@
   "description": ":dragon: An attempt at a dungeon rogue-like deck game",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "bsb -make-world",
+    "clean": "bsb-clean-world",
+    "start": "bsb -make-world -w"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/grvcoelho/dungeon/issues"
   },
-  "homepage": "https://github.com/grvcoelho/dungeon#readme"
+  "homepage": "https://github.com/grvcoelho/dungeon#readme",
+  "devDependencies": {
+    "bs-platform": "^7.1.1"
+  }
 }

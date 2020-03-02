@@ -64,4 +64,43 @@ let gargoyle = {
   ]
 }
 
-Js.log((knight, gargoyle))
+type state = {
+  mutable counter: int
+}
+
+let initialState = {
+  counter: 0
+}
+
+type action = 
+  | Increment
+  | IncrementBy(int)
+  | Decrement
+
+let reducer = (state, action) => 
+  switch (action) {
+    | Increment => {
+      state.counter = state.counter + 1
+      state
+    }
+
+    | IncrementBy(n) => {
+      state.counter = state.counter + n
+      state
+    }
+
+    | Decrement => {
+      state.counter = state.counter - 1
+      state
+    }
+  }
+
+let store = Store.create(~initialState, ~reducer)
+
+Store.dispatch(store, Increment)
+Store.dispatch(store, Increment)
+Store.dispatch(store, Increment)
+Store.dispatch(store, IncrementBy(10))
+Store.dispatch(store, Decrement)
+
+Js.log(Store.getState(store))

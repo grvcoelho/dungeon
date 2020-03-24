@@ -1,106 +1,41 @@
-type cardKind = Attack | Skill | Power
-type cardRarity = Normal | Uncommon | Rare
-type cardTarget = Self | Enemy | AllEnemies
-
-type effect = int => int
-
-type card = {
-  name: string,
-  cost: int,
-  kind: cardKind,
-  rarity: cardRarity,
-  target: cardTarget,
-  effects: list(effect),
-} 
-
-type hero = {
-  name: string,
-  hp: int,
-  cards: array(card),
-}
-
-type enemy = {
-  name: string,
-  hp: int,
-  intentions: list(effect),
-}
-
-let strike: card = {
+let strike: Card.t = {
   name: "Strike",
   cost: 1,
-  rarity: Normal,
-  target: Enemy,
+  damage: 9,
+  block: 0,
   kind: Attack,
-  effects: [
-    (a) => a,
-  ]
+  rarity: Common,
 }
 
-let defend: card = {
+let defend: Card.t = {
   name: "Defend",
   cost: 1,
-  rarity: Normal,
-  target: Self,
+  damage: 0,
+  block: 8,
   kind: Skill,
-  effects: [
-    (a) => a,
-  ]
+  rarity: Common,
 }
 
-let knight = {
-  name: "Knight",
-  hp: 80,
-  cards: [|
-    strike,
-    defend,
-  |]
+let flare: Card.t = {
+  name: "Flare",
+  cost: 0,
+  damage: 4,
+  block: 3,
+  kind: Attack,
+  rarity: Uncommon,
 }
 
-let gargoyle = {
-  name: "Gargoyle",
-  hp: 30,
-  intentions: [
-    (a) => a,
-  ]
-}
+let deck: Deck.t = [
+  strike,
+  defend,
+  flare,
+]
 
-type state = {
-  mutable counter: int
-}
+let emptyDeck: Deck.t = []
 
-let initialState = {
-  counter: 0
-}
+let pickRandom = list => List.nth(list, Random.int(List.length(list)))
 
-type action = 
-  | Increment
-  | IncrementBy(int)
-  | Decrement
+let (card, newDeck) = Deck.draw(pickRandom, emptyDeck)
 
-let reducer = (state, action) => 
-  switch (action) {
-    | Increment => {
-      state.counter = state.counter + 1
-      state
-    }
-
-    | IncrementBy(n) => {
-      state.counter = state.counter + n
-      state
-    }
-
-    | Decrement => {
-      state.counter = state.counter - 1
-      state
-    }
-  }
-
-let store = Store.create(~initialState, ~reducer)
-
-Store.dispatch(store, Increment)
-Store.dispatch(store, Increment)
-Store.dispatch(store, Increment)
-Store.dispatch(store, IncrementBy(10))
-Store.dispatch(store, Decrement)
-
-Js.log(Store.getState(store))
+Js.log(card)
+Js.log(Array.of_list(newDeck))

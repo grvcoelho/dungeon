@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "bsb -make-world",
-    "clean": "bsb-clean-world",
+    "clean": "bsb -clean-world",
+    "inspect": "nodemon lib/js/main.js",
     "start": "bsb -make-world -w"
   },
   "repository": {
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/grvcoelho/dungeon#readme",
   "devDependencies": {
-    "bs-platform": "^7.1.1"
+    "bs-platform": "^7.1.1",
+    "nodemon": "^2.0.2"
   }
 }
